@@ -28,7 +28,7 @@ export const buildGame = (name, avatar, regionName, gameState) => {
     const city = new City({
         name: regionSelected.city.name,
         balance: regionSelected.city.balance,
-        income: regionSelected.city.balance
+        income: regionSelected.city.incomeRate
     })
 
     gameState.region = region

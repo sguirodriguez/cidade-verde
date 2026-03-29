@@ -8,6 +8,7 @@ export const BUILDINGS = [
     key: 'solar_plant',
     role: 'producer',
     type: 'solar',
+    capacity: 50,
     cost: 300,
     description: 'Painéis fotovoltaicos. Alta eficiência em regiões ensolaradas.',
   },

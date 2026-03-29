@@ -13,20 +13,12 @@ export default class Region {
         this.events = events;
     }
 
-    get name() {
-        return this.name;
-    }
-
     get multipliers() {
         return {
             solar: this.solar,
             wind: this.wind,
             biomass: this.biomass
         }
-    }
-
-    get events() {
-        return this.events
     }
 }
 
