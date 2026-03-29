@@ -1,0 +1,71 @@
+
+export const BUILDINGS = [
+  // --------------------------
+  // PRODUCERS — produzem energia
+  // --------------------------
+  {
+    name: 'Usina Solar',
+    key: 'solar_plant',
+    role: 'producer',
+    type: 'solar',
+    cost: 300,
+    description: 'Painéis fotovoltaicos. Alta eficiência em regiões ensolaradas.',
+  },
+  {
+    name: 'Parque Eólico',
+    key: 'wind_farm',
+    role: 'producer',
+    type: 'wind',
+    capacity: 60,
+    cost: 400,
+    description: 'Torres eólicas. Ideal para regiões costeiras e de planalto.',
+  },
+  {
+    name: 'Usina de Biomassa',
+    key: 'biomass_plant',
+    role: 'producer',
+    type: 'biomass',
+    capacity: 40,
+    cost: 250,
+    description: 'Queima resíduos orgânicos. Geração estável, pouco afetada pelo clima.',
+  },
+  // --------------------------
+  // CONSUMERS — consomem energia
+  // --------------------------
+  {
+    key: 'house',
+    name: 'Residência',
+    role: 'consumer',
+    type: 'residential',
+    capacity: 10,
+    cost: 0,
+    description: 'Bairro residencial. Baixo consumo mas cresce com a população.',
+  },
+  {
+    key: 'factory',
+    name: 'Fábrica',
+    role: 'consumer',
+    type: 'industrial',
+    capacity: 40,
+    cost: 0,
+    description: 'Indústria local. Alto consumo energético constante.',
+  },
+  {
+    key: 'hospital',
+    name: 'Hospital',
+    role: 'consumer',
+    type: 'essential',
+    capacity: 25,
+    cost: 0,
+    description: 'Serviço essencial. Consumo prioritário — penalidade maior se não atendido.',
+  },
+  {
+    key: 'school',
+    name: 'Escola',
+    role: 'consumer',
+    type: 'essential',
+    capacity: 15,
+    cost: 0,
+    description: 'Infraestrutura educacional. Consumo moderado e constante.',
+  },
+];
