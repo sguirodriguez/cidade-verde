@@ -1,4 +1,6 @@
 import { buildGame } from "./useCases/buildGame.js";
+import { buyBuilding } from "./useCases/buyBuilding.js";
+import { calcEnergy } from "./useCases/calcEnergy.js";
 
 const gameState = {
   player: null,
@@ -14,8 +16,11 @@ const gameState = {
 
 buildGame("makarov", "titan", "Nordeste", gameState)
 
-
 // ---- GAME STARTED ----
 
+buyBuilding("biomass_plant", gameState)
+buyBuilding("wind_farm", gameState)
 
-console.log("game state", gameState);
+const result = calcEnergy(gameState.buildings, gameState.region)
+
+console.log("result", result, gameState.city);
