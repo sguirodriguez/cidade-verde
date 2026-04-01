@@ -13,10 +13,11 @@ export default class Event {
     demandBonus;
     probability;
 
-    constructor({ key, name, direction, windEffect, solarEffect, biomassEffect, balanceBonus, demandBonus, probability }) {
-        this.id = uuidv4(),
-            this.key = key;
+    constructor({ key, name, description, direction, windEffect, solarEffect, biomassEffect, balanceBonus, demandBonus, probability }) {
+        this.id = uuidv4();
+        this.key = key;
         this.name = name;
+        this.description = description;
         this.direction = direction;
         this.solarEffect = solarEffect;
         this.windEffect = windEffect;
@@ -36,8 +37,10 @@ export default class Event {
             solarEffect: this.solarEffect,
             windEffect: this.windEffect,
             biomassEffect: this.biomassEffect,
-            probability: this.probability
-        }
+            balanceBonus: this.balanceBonus,
+            demandBonus: this.demandBonus,
+            probability: this.probability,
+        };
     }
 }
 

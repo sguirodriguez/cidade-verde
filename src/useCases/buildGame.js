@@ -1,9 +1,7 @@
 import { BUILDINGS } from "../data/buildings.js";
-import { EVENTS } from "../data/events.js";
 import { REGIONS } from "../data/regions.js";
 import Building from "../entities/building.js";
 import City from "../entities/city.js";
-import Event from "../entities/event.js";
 import Player from "../entities/player.js";
 import Region from "../entities/region.js";
 
@@ -27,7 +25,7 @@ export const buildGame = (name, avatar, regionName, gameState) => {
     const city = new City({
         name: regionSelected.city.name,
         balance: regionSelected.city.balance,
-        income: regionSelected.city.incomeRate,
+        turnIncome: regionSelected.city.turnIncome,
     });
 
     const buildings = BUILDINGS
@@ -45,29 +43,10 @@ export const buildGame = (name, avatar, regionName, gameState) => {
                 })
         );
 
-    const events = EVENTS
-        .filter(item => region.events.includes(item.key))
-        .map(
-            item =>
-                new Event({
-                    name: item.name,
-                    key: item.key,
-                    description: item.description,
-                    direction: item.direction,
-                    solarEffect: item.solarEffect,
-                    windEffect: item.windEffect,
-                    biomassEffect: item.biomassEffect,
-                    balanceBonus: item.balanceBonus,
-                    demandBonus: item.demandBonus,
-                    probability: item.probability,
-                })
-        );
-
     gameState.player = player;
     gameState.region = region;
     gameState.city = city;
     gameState.buildings = buildings;
-    gameState.events = events;
 
     return gameState;
 };

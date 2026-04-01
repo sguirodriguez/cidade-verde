@@ -1,12 +1,12 @@
 export default class City {
     name;
     balance;
-    incomeRate;
+    turnIncome;
 
-    constructor({ name, balance, income }) {
+    constructor({ name, balance, turnIncome }) {
         this.name = name;
         this.balance = balance;
-        this.incomeRate = income;
+        this.turnIncome = turnIncome;
     }
 
 }

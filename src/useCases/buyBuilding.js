@@ -24,7 +24,16 @@ export const buyBuilding = (buildingKey, gameState) => {
 
     gameState.buildings = [...gameState.buildings, building]
 
-    return {
-        status: "PURCHASED"
-    }
+    gameState.history = [...gameState.history, {
+        action: "BUILDING_PURCHASED",
+        turn: gameState.turn,
+        city: gameState.city.name,
+        lastBalance: gameState.city.balance + buildingUserWantToBuy.cost,
+        newBalance: gameState.city.balance,
+        buildingKey: building.key,
+        buildingName: building.name,
+        buildingRole: building.role,
+        buildingCost: building.cost,
+        buildingCapacity: building.capacity,
+    }]
 }

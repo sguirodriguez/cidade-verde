@@ -4,7 +4,7 @@ export const REGIONS = [
     city: {
       name: 'Fortaleza',
       balance: 800,
-      incomeRate: 1.2
+      turnIncome: 110,
     },
     description: 'Alta irradiação solar e ventos costeiros fortes. Seca frequente no sertão.',
     mults: {
@@ -20,7 +20,7 @@ export const REGIONS = [
     city: {
       name: 'Curitiba',
       balance: 800,
-      incomeRate: 1.2
+      turnIncome: 115,
     },
     description: 'Ventos intensos no litoral e planalto. Chuvas regulares favorecem biomassa.',
     mults: {
@@ -36,7 +36,7 @@ export const REGIONS = [
     city: {
       name: 'São Paulo',
       balance: 800,
-      incomeRate: 1.2
+      turnIncome: 130,
     },
     description: 'Região equilibrada. Boa biomassa pela agroindústria, solar moderado.',
     mults: {
@@ -52,7 +52,7 @@ export const REGIONS = [
     city: {
       name: 'Manaus',
       balance: 800,
-      incomeRate: 1.2
+      turnIncome: 105,
     },
     description: 'Biomassa abundante pela floresta. Solar alto mas frequentemente encoberto.',
     mults: {
