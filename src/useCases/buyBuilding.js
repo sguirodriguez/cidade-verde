@@ -1,10 +1,19 @@
 import { BUILDINGS } from "../data/buildings.js"
 import Building from "../entities/building.js"
+import { tryFinalizeGame } from "./gameEnd.js"
 
 export const buyBuilding = (buildingKey, gameState) => {
+    if (gameState.phase === "ended") {
+        return { status: "GAME_OVER" }
+    }
+
     const buildingUserWantToBuy = BUILDINGS.find(item => item.key === buildingKey)
 
-    if (gameState.balance < buildingUserWantToBuy.cost) {
+    if (!buildingUserWantToBuy) {
+        return { status: "NOT_FOUND" }
+    }
+
+    if (gameState.city.balance < buildingUserWantToBuy.cost) {
         return {
             status: "FAILED"
         }
@@ -36,4 +45,6 @@ export const buyBuilding = (buildingKey, gameState) => {
         buildingCost: building.cost,
         buildingCapacity: building.capacity,
     }]
+
+    tryFinalizeGame(gameState)
 }

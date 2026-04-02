@@ -2,9 +2,15 @@ import { calcEnergy } from "./calcEnergy.js";
 import { diceEvents } from "./diceEvents.js";
 import { modifiersFromEvent } from "./eventModifiers.js";
 import { growConsumerDemandForTurn } from "./growConsumerDemand.js";
+import { tryFinalizeGame } from "./gameEnd.js";
 
 export const advanceTurn = (gameState) => {
+    if (gameState.phase === "ended") {
+        return;
+    }
+
     if (gameState.turn >= gameState.maxTurns) {
+        tryFinalizeGame(gameState);
         return;
     }
 
@@ -54,4 +60,8 @@ export const advanceTurn = (gameState) => {
             current,
         },
     ];
+
+    if (gameState.turn >= gameState.maxTurns) {
+        tryFinalizeGame(gameState);
+    }
 };

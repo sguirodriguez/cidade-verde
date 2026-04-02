@@ -1,40 +1,7 @@
-import { advanceTurn } from "./useCases/advanceTurn.js";
-import { buildGame } from "./useCases/buildGame.js";
-import { buyBuilding } from "./useCases/buyBuilding.js";
-import { calcEnergy } from "./useCases/calcEnergy.js";
-
-const gameState = {
-  player: null,
-  city: null,
-  region: null,
-  buildings: [],
-  event: null,
-  eventModifiers: {
-    solarEffect: 1,
-    windEffect: 1,
-    biomassEffect: 1,
-    demandBonus: 0,
-  },
-  turn: 1,
-  maxTurns: 12,
-  history: [],
-};
-
-// ---- BUILD GAME ----
-
-buildGame("makarov", "titan", "Nordeste", gameState)
-
-// ---- GAME STARTED ----
-
-buyBuilding("biomass_plant", gameState)
-buyBuilding("wind_farm", gameState)
-
-calcEnergy(
-  gameState.buildings,
-  gameState.region,
-  gameState.eventModifiers,
-);
-
-advanceTurn(gameState)
-
-console.log("result", gameState);
+export { createGameState } from "./game/createGameState.js";
+export { buildGame } from "./useCases/buildGame.js";
+export { advanceTurn } from "./useCases/advanceTurn.js";
+export { buyBuilding } from "./useCases/buyBuilding.js";
+export { calcEnergy } from "./useCases/calcEnergy.js";
+export { getGameResults } from "./useCases/gameResults.js";
+export { tryFinalizeGame, isGameOver } from "./useCases/gameEnd.js";

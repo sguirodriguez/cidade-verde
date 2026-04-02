@@ -1,8 +1,4 @@
-
 export const BUILDINGS = [
-  // --------------------------
-  // PRODUCERS — produzem energia
-  // --------------------------
   {
     name: 'Usina Solar',
     key: 'solar_plant',
@@ -30,9 +26,6 @@ export const BUILDINGS = [
     cost: 250,
     description: 'Queima resíduos orgânicos. Geração estável, pouco afetada pelo clima.',
   },
-  // --------------------------
-  // CONSUMERS — consomem energia
-  // --------------------------
   {
     key: 'house',
     name: 'Residência',

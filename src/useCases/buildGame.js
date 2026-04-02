@@ -47,6 +47,8 @@ export const buildGame = (name, avatar, regionName, gameState) => {
     gameState.region = region;
     gameState.city = city;
     gameState.buildings = buildings;
+    if (gameState.phase == null) gameState.phase = "playing";
+    if (gameState.outcome === undefined) gameState.outcome = null;
 
     return gameState;
 };
