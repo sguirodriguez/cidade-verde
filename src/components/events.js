@@ -83,6 +83,12 @@ export function wireEvents() {
   });
 
   document.getElementById('btn-close-shop').addEventListener('click', () => {
+    if (isGameOver(gameState)) {
+      saveMatchToHistory(gameState);
+      renderResults();
+      showScreen('results');
+      return;
+    }
     renderMap();
     showScreen('map');
   });

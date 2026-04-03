@@ -4,7 +4,7 @@ export { advanceTurn } from "./useCases/advanceTurn.js";
 export { buyBuilding } from "./useCases/buyBuilding.js";
 export { calcEnergy } from "./useCases/calcEnergy.js";
 export { getGameResults } from "./useCases/gameResults.js";
-export { tryFinalizeGame, isGameOver } from "./useCases/gameEnd.js";
+export { tryFinalizeGame, finalizeMatchAtTurnLimit, isGameOver } from "./useCases/gameEnd.js";
 
 export { AVATARS } from "./data/avatars.js";
 export { PRODUCER_BUILDINGS } from "./data/producerBuildings.js";

@@ -1,7 +1,11 @@
 import { BUILDING_ICONS } from '../assets/buildingIcons.js';
 import { PRODUCER_BUILDINGS } from '../data/producerBuildings.js';
 import { buyBuilding } from '../useCases/buyBuilding.js';
+import { isGameOver } from '../useCases/gameEnd.js';
 import { gameState } from '../session.js';
+import { saveMatchToHistory } from './history.js';
+import { renderResults } from './results.js';
+import { showScreen } from './navigation.js';
 import { showToast, triggerBuildingPurchaseAnimation } from './feedback.js';
 import { formatCurrency } from './format.js';
 
@@ -43,6 +47,11 @@ export function renderShop() {
         triggerBuildingPurchaseAnimation(key);
       }
       renderShop();
+      if (isGameOver(gameState)) {
+        saveMatchToHistory(gameState);
+        renderResults();
+        showScreen('results');
+      }
     });
   });
 }

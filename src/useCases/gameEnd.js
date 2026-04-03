@@ -53,6 +53,24 @@ export const tryFinalizeGame = (gameState) => {
     if (gameState.phase === "ended" || !gameState.city) {
         return;
     }
+    if (gameState.city.balance >= 0) {
+        return;
+    }
+
+    const stats = snapshotStats(gameState);
+    gameState.phase = "ended";
+    gameState.outcome = {
+        result: "defeat",
+        reason: "bankruptcy",
+        stats,
+    };
+    appendEndHistory(gameState, gameState.outcome);
+};
+
+export const finalizeMatchAtTurnLimit = (gameState) => {
+    if (gameState.phase === "ended" || !gameState.city) {
+        return;
+    }
 
     const stats = snapshotStats(gameState);
 
@@ -67,13 +85,10 @@ export const tryFinalizeGame = (gameState) => {
         return;
     }
 
-    if (gameState.turn >= gameState.maxTurns) {
-        gameState.phase = "ended";
-        const resolution = resolveTimeUpOutcome(gameState, stats);
-        gameState.outcome = { ...resolution, stats };
-        appendEndHistory(gameState, gameState.outcome);
-    }
+    gameState.phase = "ended";
+    const resolution = resolveTimeUpOutcome(gameState, stats);
+    gameState.outcome = { ...resolution, stats };
+    appendEndHistory(gameState, gameState.outcome);
 };
 
-export const isGameOver = (gameState) =>
-    gameState.phase === "ended" || gameState.turn >= gameState.maxTurns;
+export const isGameOver = (gameState) => gameState.phase === "ended";

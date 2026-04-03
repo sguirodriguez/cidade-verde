@@ -39,6 +39,24 @@ export function renderMap() {
 
   document.getElementById('map-city-name').textContent = gameState.city.name;
   document.getElementById('map-region-name').textContent = `Região ${gameState.region.name}`;
+
+  const producerTypeLabels = { solar: '☀️ Solar', wind: '💨 Eólica', biomass: '🌿 Biomassa' };
+  const multsEl = document.getElementById('map-region-mults');
+  if (multsEl && gameState.region) {
+    const entries = [
+      ['solar', gameState.region.solar],
+      ['wind', gameState.region.wind],
+      ['biomass', gameState.region.biomass],
+    ];
+    multsEl.innerHTML = entries
+      .map(([key, value]) => {
+        const tagClass = value > 1 ? 'boost' : value < 1 ? 'weaken' : '';
+        const label = producerTypeLabels[key] ?? key;
+        return `<span class="tag ${tagClass}">${label} ×${value}</span>`;
+      })
+      .join('');
+  }
+
   document.getElementById('map-turn').textContent = `Turno ${gameState.turn}/${gameState.maxTurns}`;
   document.getElementById('map-balance').textContent = formatCurrency(gameState.city.balance);
   document.getElementById('map-energy').textContent = `${Math.round(energyMetrics.energy)} MW`;
@@ -65,8 +83,13 @@ export function renderMap() {
   renderMapEvent();
 
   const gameHasEnded = isGameOver(gameState);
-  document.getElementById('btn-advance').disabled = gameHasEnded;
+  const advanceBtn = document.getElementById('btn-advance');
+  advanceBtn.disabled = gameHasEnded;
   document.getElementById('btn-open-shop').disabled = gameHasEnded;
+  advanceBtn.textContent =
+    !gameHasEnded && gameState.turn >= gameState.maxTurns
+      ? 'Encerrar partida →'
+      : 'Avançar Turno →';
 }
 
 export function renderMapEvent() {

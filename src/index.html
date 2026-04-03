@@ -11,7 +11,6 @@
 <body>
   <div class="app" id="app-root">
 
-    <!-- ══ START ══════════════════════════════════════════════════════════ -->
     <div id="screen-start" class="screen active">
       <div class="col gap20 screen-center">
         <div class="tc">
@@ -26,7 +25,6 @@
       <p class="tc xs dim mt-auto">Gerenciamento de energia renovável</p>
     </div>
 
-    <!-- ══ HISTORY ════════════════════════════════════════════════════════ -->
     <div id="screen-history" class="screen">
       <div class="row row-apart ai-center">
         <h2>Histórico</h2>
@@ -35,7 +33,6 @@
       <div id="history-list" class="col gap12 mt20"></div>
     </div>
 
-    <!-- ══ CHARACTER SELECTION ════════════════════════════════════════════ -->
     <div id="screen-character" class="screen">
       <h2>Escolha seu Personagem</h2>
       <p class="mt4">Cada líder traz um estilo diferente de gestão.</p>
@@ -52,7 +49,6 @@
       </div>
     </div>
 
-    <!-- ══ REGION SELECTION ═══════════════════════════════════════════════ -->
     <div id="screen-region" class="screen">
       <h2>Escolha a Região</h2>
       <p class="mt4">Cada região tem clima e fontes de energia únicas.</p>
@@ -64,7 +60,6 @@
       </div>
     </div>
 
-    <!-- ══ CITY MAP ═══════════════════════════════════════════════════════ -->
     <div id="screen-map" class="screen screen--map">
 
       <div class="map-layout">
@@ -73,6 +68,8 @@
             <div>
               <div class="bold" id="map-city-name">—</div>
               <div class="xs dim" id="map-region-name">—</div>
+              <p class="xs dim mt6 map-mults-label">Potencial regional (base por fonte)</p>
+              <div id="map-region-mults" class="tags map-region-mults mt4" aria-label="Multiplicadores de geração por fonte"></div>
             </div>
             <div class="turn-badge" id="map-turn">Turno 1/12</div>
           </div>
@@ -135,7 +132,6 @@
 
     </div>
 
-    <!-- ══ SHOP ═══════════════════════════════════════════════════════════ -->
     <div id="screen-shop" class="screen screen--shop">
       <div class="shop-head row row-apart ai-center wrap-gap">
         <h2>Loja de Usinas</h2>
@@ -148,7 +144,6 @@
       </div>
     </div>
 
-    <!-- ══ RESULTS ════════════════════════════════════════════════════════ -->
     <div id="screen-results" class="screen">
       <div id="result-banner" class="result-banner"></div>
       <div class="card col gap12 mt16">
