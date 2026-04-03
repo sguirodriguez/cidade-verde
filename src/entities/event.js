@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 export default class Event {
     id;
     key;
@@ -14,7 +12,7 @@ export default class Event {
     probability;
 
     constructor({ key, name, description, direction, windEffect, solarEffect, biomassEffect, balanceBonus, demandBonus, probability }) {
-        this.id = uuidv4();
+        this.id = crypto.randomUUID();
         this.key = key;
         this.name = name;
         this.description = description;

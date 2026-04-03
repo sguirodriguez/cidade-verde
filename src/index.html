@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CidadeVerde</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- ══ START ══════════════════════════════════════════════════════════ -->
+    <div id="screen-start" class="screen active">
+      <div class="col gap20 screen-center">
+        <div class="tc">
+          <div class="logo">Cidade<span>Verde</span></div>
+          <p class="mt8">Construa uma cidade movida por energia renovável</p>
+        </div>
+        <div class="col gap12 mt24">
+          <button class="btn btn-primary btn-full" id="btn-play">Jogar</button>
+          <button class="btn btn-secondary btn-full" id="btn-stats">Estatísticas</button>
+        </div>
+      </div>
+      <p class="tc xs dim mt-auto">Gerenciamento de energia renovável</p>
+    </div>
+
+    <!-- ══ HISTORY ════════════════════════════════════════════════════════ -->
+    <div id="screen-history" class="screen">
+      <div class="row row-apart ai-center">
+        <h2>Histórico</h2>
+        <button class="btn btn-secondary btn-sm" id="btn-history-back">← Voltar</button>
+      </div>
+      <div id="history-list" class="col gap12 mt20"></div>
+    </div>
+
+    <!-- ══ CHARACTER SELECTION ════════════════════════════════════════════ -->
+    <div id="screen-character" class="screen">
+      <h2>Escolha seu Personagem</h2>
+      <p class="mt4">Cada líder traz um estilo diferente de gestão.</p>
+      <div id="avatar-grid" class="avatar-grid mt20"></div>
+      <div id="avatar-desc" class="card mt12"></div>
+      <div class="col gap12 mt-auto">
+        <div>
+          <label for="player-name">Seu nome</label>
+          <input type="text" id="player-name" placeholder="Nome do gestor..." maxlength="30">
+        </div>
+        <button class="btn btn-primary btn-full" id="btn-confirm-avatar" disabled>
+          Confirmar Personagem →
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ REGION SELECTION ═══════════════════════════════════════════════ -->
+    <div id="screen-region" class="screen">
+      <h2>Escolha a Região</h2>
+      <p class="mt4">Cada região tem clima e fontes de energia únicas.</p>
+      <div id="region-list" class="col gap12 mt20"></div>
+      <div class="mt-auto">
+        <button class="btn btn-primary btn-full" id="btn-start-game" disabled>
+          Iniciar Partida →
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ CITY MAP ═══════════════════════════════════════════════════════ -->
+    <div id="screen-map" class="screen">
+
+      <div class="row row-apart ai-start">
+        <div>
+          <div class="bold" id="map-city-name">—</div>
+          <div class="xs dim" id="map-region-name">—</div>
+        </div>
+        <div class="turn-badge" id="map-turn">Turno 1/12</div>
+      </div>
+
+      <div class="stats-grid mt16">
+        <div class="stat">
+          <div class="stat-label">💰 Saldo</div>
+          <div class="stat-value clr-yellow" id="map-balance">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">⚡ Energia</div>
+          <div class="stat-value clr-green" id="map-energy">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">🏭 Demanda</div>
+          <div class="stat-value" id="map-demand">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">🔋 Cobertura</div>
+          <div class="stat-value" id="map-coverage">—</div>
+        </div>
+      </div>
+
+      <div class="mt12">
+        <div class="prog-wrap">
+          <div class="prog-bar" id="map-prog"></div>
+        </div>
+        <div class="row row-apart mt4">
+          <span class="xs dim">Meta de cobertura: 70%</span>
+          <span class="xs dim" id="map-prog-label">0%</span>
+        </div>
+      </div>
+
+      <div class="stats-grid mt10">
+        <div class="stat">
+          <div class="stat-label">🏗️ Produtores</div>
+          <div class="stat-value" id="map-producers">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">🏘️ Consumidores</div>
+          <div class="stat-value" id="map-consumers">—</div>
+        </div>
+      </div>
+
+      <div id="map-event" class="mt12 hidden"></div>
+
+      <div class="col gap12 mt-auto">
+        <button class="btn btn-secondary btn-full" id="btn-open-shop">🛒 Loja de Usinas</button>
+        <button class="btn btn-primary btn-full" id="btn-advance">Avançar Turno →</button>
+      </div>
+
+    </div>
+
+    <!-- ══ SHOP ═══════════════════════════════════════════════════════════ -->
+    <div id="screen-shop" class="screen">
+      <div class="row row-apart ai-center">
+        <h2>Loja de Usinas</h2>
+        <span class="sm">Saldo: <strong class="clr-yellow" id="shop-balance">—</strong></span>
+      </div>
+      <p class="mt4">Construa usinas para ampliar a produção de energia limpa.</p>
+      <div id="shop-list" class="col gap12 mt20"></div>
+      <div class="mt-auto">
+        <button class="btn btn-secondary btn-full" id="btn-close-shop">← Voltar ao Mapa</button>
+      </div>
+    </div>
+
+    <!-- ══ RESULTS ════════════════════════════════════════════════════════ -->
+    <div id="screen-results" class="screen">
+      <div id="result-banner" class="result-banner"></div>
+      <div class="card col gap12 mt16">
+        <h3>Resumo da Partida</h3>
+        <div class="divider"></div>
+        <div id="result-summary" class="col gap8"></div>
+      </div>
+      <div class="mt12">
+        <button class="btn btn-secondary btn-full btn-sm" id="btn-toggle-logs">
+          Ver Registro de Eventos ▼
+        </button>
+        <div id="result-logs" class="logs-box mt8 hidden"></div>
+      </div>
+      <div class="col gap12 mt-auto">
+        <button class="btn btn-primary btn-full" id="btn-new-game">Nova Partida</button>
+        <button class="btn btn-secondary btn-full" id="btn-go-start">Ir para o Início</button>
+      </div>
+    </div>
+
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>

@@ -2,6 +2,10 @@ export const createGameState = ({
     maxTurns = 12,
     winCoverageThreshold = 70,
 } = {}) => ({
+    uiSelections: {
+        avatar: null,
+        region: null,
+    },
     player: null,
     city: null,
     region: null,

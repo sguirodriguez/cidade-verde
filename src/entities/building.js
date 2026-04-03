@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 export default class Building {
     id;
     key;
@@ -11,7 +9,7 @@ export default class Building {
     cost;
 
     constructor({ name, key, description, role, type, capacity, cost }) {
-        this.id = uuidv4(),
+        this.id = crypto.randomUUID(),
             this.key = key,
             this.name = name;
         this.description = description;
