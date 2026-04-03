@@ -5,7 +5,7 @@ export const BUILDINGS = [
     role: 'producer',
     type: 'solar',
     capacity: 50,
-    cost: 300,
+    cost: 405,
     description: 'Painéis fotovoltaicos. Alta eficiência em regiões ensolaradas.',
   },
   {
@@ -14,7 +14,7 @@ export const BUILDINGS = [
     role: 'producer',
     type: 'wind',
     capacity: 60,
-    cost: 400,
+    cost: 540,
     description: 'Torres eólicas. Ideal para regiões costeiras e de planalto.',
   },
   {
@@ -23,7 +23,7 @@ export const BUILDINGS = [
     role: 'producer',
     type: 'biomass',
     capacity: 40,
-    cost: 250,
+    cost: 338,
     description: 'Queima resíduos orgânicos. Geração estável, pouco afetada pelo clima.',
   },
   {

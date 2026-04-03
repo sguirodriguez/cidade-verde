@@ -2,6 +2,7 @@ import { BUILDING_ICONS } from '../assets/buildingIcons.js';
 import { PRODUCER_BUILDINGS } from '../data/producerBuildings.js';
 import { buyBuilding } from '../useCases/buyBuilding.js';
 import { gameState } from '../session.js';
+import { showToast, triggerBuildingPurchaseAnimation } from './feedback.js';
 import { formatCurrency } from './format.js';
 
 export function renderShop() {
@@ -12,7 +13,7 @@ export function renderShop() {
     const canAfford = gameState.city.balance >= building.cost;
     const icon = BUILDING_ICONS[building.key] ?? '🏭';
     return `
-      <div class="bld-card">
+      <div class="bld-card" data-building-key="${building.key}">
         <div class="bld-icon">${icon}</div>
         <div class="bld-info">
           <div class="bld-name">${building.name}</div>
@@ -25,7 +26,22 @@ export function renderShop() {
 
   list.querySelectorAll('[data-key]').forEach(buyButton => {
     buyButton.addEventListener('click', () => {
-      buyBuilding(buyButton.dataset.key, gameState);
+      const key = buyButton.dataset.key;
+      const result = buyBuilding(key, gameState);
+      if (result?.status === 'FAILED') {
+        showToast('Saldo insuficiente para esta usina.', { type: 'error' });
+        renderShop();
+        return;
+      }
+      if (result?.status === 'GAME_OVER') {
+        renderShop();
+        return;
+      }
+      const bought = PRODUCER_BUILDINGS.find(b => b.key === key);
+      if (bought) {
+        showToast(`${bought.name} construída! +${bought.capacity} MW`, { type: 'success' });
+        triggerBuildingPurchaseAnimation(key);
+      }
       renderShop();
     });
   });

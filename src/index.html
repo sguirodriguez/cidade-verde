@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="app">
+  <div class="app" id="app-root">
 
     <!-- ══ START ══════════════════════════════════════════════════════════ -->
     <div id="screen-start" class="screen active">
@@ -65,73 +65,84 @@
     </div>
 
     <!-- ══ CITY MAP ═══════════════════════════════════════════════════════ -->
-    <div id="screen-map" class="screen">
+    <div id="screen-map" class="screen screen--map">
 
-      <div class="row row-apart ai-start">
-        <div>
-          <div class="bold" id="map-city-name">—</div>
-          <div class="xs dim" id="map-region-name">—</div>
-        </div>
-        <div class="turn-badge" id="map-turn">Turno 1/12</div>
-      </div>
+      <div class="map-layout">
+        <div class="map-layout__main">
+          <div class="row row-apart ai-start map-header">
+            <div>
+              <div class="bold" id="map-city-name">—</div>
+              <div class="xs dim" id="map-region-name">—</div>
+            </div>
+            <div class="turn-badge" id="map-turn">Turno 1/12</div>
+          </div>
 
-      <div class="stats-grid mt16">
-        <div class="stat">
-          <div class="stat-label">💰 Saldo</div>
-          <div class="stat-value clr-yellow" id="map-balance">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">⚡ Energia</div>
-          <div class="stat-value clr-green" id="map-energy">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">🏭 Demanda</div>
-          <div class="stat-value" id="map-demand">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">🔋 Cobertura</div>
-          <div class="stat-value" id="map-coverage">—</div>
-        </div>
-      </div>
+          <div class="stats-grid stats-grid--map mt16">
+            <div class="stat">
+              <div class="stat-label">💰 Saldo</div>
+              <div class="stat-value clr-yellow" id="map-balance">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">⚡ Energia</div>
+              <div class="stat-value clr-green" id="map-energy">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">🏭 Demanda</div>
+              <div class="stat-value" id="map-demand">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">🔋 Cobertura</div>
+              <div class="stat-value" id="map-coverage">—</div>
+            </div>
+          </div>
 
-      <div class="mt12">
-        <div class="prog-wrap">
-          <div class="prog-bar" id="map-prog"></div>
-        </div>
-        <div class="row row-apart mt4">
-          <span class="xs dim">Meta de cobertura: 70%</span>
-          <span class="xs dim" id="map-prog-label">0%</span>
-        </div>
-      </div>
+          <div class="mt12">
+            <div class="prog-wrap">
+              <div class="prog-bar" id="map-prog"></div>
+            </div>
+            <div class="row row-apart mt4">
+              <span class="xs dim">Meta de cobertura: 70%</span>
+              <span class="xs dim" id="map-prog-label">0%</span>
+            </div>
+          </div>
 
-      <div class="stats-grid mt10">
-        <div class="stat">
-          <div class="stat-label">🏗️ Produtores</div>
-          <div class="stat-value" id="map-producers">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">🏘️ Consumidores</div>
-          <div class="stat-value" id="map-consumers">—</div>
-        </div>
-      </div>
+          <div id="map-coverage-alert" class="coverage-alert hidden" role="status" aria-live="polite"></div>
 
-      <div id="map-event" class="mt12 hidden"></div>
+          <div class="stats-grid stats-grid--compact mt10">
+            <div class="stat">
+              <div class="stat-label">🏗️ Produtores</div>
+              <div class="stat-value" id="map-producers">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">🏘️ Consumidores</div>
+              <div class="stat-value" id="map-consumers">—</div>
+            </div>
+          </div>
 
-      <div class="col gap12 mt-auto">
-        <button class="btn btn-secondary btn-full" id="btn-open-shop">🛒 Loja de Usinas</button>
-        <button class="btn btn-primary btn-full" id="btn-advance">Avançar Turno →</button>
+          <div id="map-event" class="mt12 hidden"></div>
+        </div>
+
+        <aside class="map-layout__aside" aria-label="Ações da cidade">
+          <div class="map-aside-card">
+            <p class="xs dim map-aside-hint">Construa usinas e avance o turno para reagir ao clima e à demanda.</p>
+            <div class="col gap12 map-actions mt12">
+              <button type="button" class="btn btn-secondary btn-full" id="btn-open-shop">🛒 Loja de Usinas</button>
+              <button type="button" class="btn btn-primary btn-full" id="btn-advance">Avançar Turno →</button>
+            </div>
+          </div>
+        </aside>
       </div>
 
     </div>
 
     <!-- ══ SHOP ═══════════════════════════════════════════════════════════ -->
-    <div id="screen-shop" class="screen">
-      <div class="row row-apart ai-center">
+    <div id="screen-shop" class="screen screen--shop">
+      <div class="shop-head row row-apart ai-center wrap-gap">
         <h2>Loja de Usinas</h2>
-        <span class="sm">Saldo: <strong class="clr-yellow" id="shop-balance">—</strong></span>
+        <span class="sm shop-balance-pill">Saldo: <strong class="clr-yellow" id="shop-balance">—</strong></span>
       </div>
       <p class="mt4">Construa usinas para ampliar a produção de energia limpa.</p>
-      <div id="shop-list" class="col gap12 mt20"></div>
+      <div id="shop-list" class="shop-list col gap12 mt20"></div>
       <div class="mt-auto">
         <button class="btn btn-secondary btn-full" id="btn-close-shop">← Voltar ao Mapa</button>
       </div>
@@ -157,6 +168,8 @@
       </div>
     </div>
 
+    <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+    <div id="round-feedback" class="round-feedback" aria-live="assertive"></div>
   </div>
   <script type="module" src="app.js"></script>
 </body>

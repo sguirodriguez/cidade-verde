@@ -8,6 +8,7 @@ import { showScreen } from './navigation.js';
 import { renderMap } from './map.js';
 import { renderRegionList } from './region.js';
 import { renderResults } from './results.js';
+import { showRoundFeedback } from './feedback.js';
 import { renderShop } from './shop.js';
 
 function resetCharacterFlow() {
@@ -70,6 +71,15 @@ export function wireEvents() {
     }
 
     renderMap();
+
+    const lastEntry = gameState.history[gameState.history.length - 1];
+    if (lastEntry?.action === 'TURN_ADVANCED') {
+      showRoundFeedback({
+        previous: lastEntry.previous,
+        current: lastEntry.current,
+        event: gameState.event,
+      });
+    }
   });
 
   document.getElementById('btn-close-shop').addEventListener('click', () => {

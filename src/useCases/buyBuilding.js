@@ -15,7 +15,7 @@ export const buyBuilding = (buildingKey, gameState) => {
 
     if (gameState.city.balance < buildingUserWantToBuy.cost) {
         return {
-            status: "FAILED"
+            status: "FAILED",
         }
     }
 
@@ -47,4 +47,6 @@ export const buyBuilding = (buildingKey, gameState) => {
     }]
 
     tryFinalizeGame(gameState)
+
+    return { status: "OK" }
 }

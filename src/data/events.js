@@ -10,7 +10,7 @@ export const EVENTS = [
       sudeste: 0.15,
       norte: 0.20,
     },
-    biomassEffect: 0.5,
+    biomassEffect: 0.42,
   },
 
   {
@@ -24,7 +24,7 @@ export const EVENTS = [
       sudeste: 0.20,
       norte: 0.15,
     },
-    demandBonus: 50,
+    demandBonus: 62,
   },
 
   {
@@ -38,7 +38,7 @@ export const EVENTS = [
       sudeste: 0.10,
       norte: 0.05,
     },
-    windEffect: 1.5,
+    windEffect: 1.28,
   },
 
   {
@@ -52,7 +52,7 @@ export const EVENTS = [
       sudeste: 0.20,
       norte: 0.25,
     },
-    solarEffect: 0.4,
+    solarEffect: 0.34,
   },
 
   {
@@ -66,6 +66,6 @@ export const EVENTS = [
       sudeste: 0.10,
       norte: 0.10,
     },
-    balanceBonus: 500,
+    balanceBonus: 320,
   },
 ];

@@ -3,6 +3,36 @@ import { isGameOver } from '../useCases/gameEnd.js';
 import { gameState } from '../session.js';
 import { coverageClass, eventDirectionClass, formatCurrency } from './format.js';
 
+const COVERAGE_CRITICAL = 40;
+
+function updateCoverageAlert(coveragePercent) {
+  const alertEl = document.getElementById('map-coverage-alert');
+  if (!alertEl) return;
+
+  const threshold = gameState.winCoverageThreshold ?? 70;
+  const belowMeta = coveragePercent < threshold;
+  const critical = coveragePercent < COVERAGE_CRITICAL;
+
+  if (!belowMeta) {
+    alertEl.classList.add('hidden');
+    alertEl.classList.remove('coverage-alert--pulse', 'coverage-alert--critical');
+    return;
+  }
+
+  alertEl.classList.remove('hidden');
+  alertEl.innerHTML = `
+    <span class="coverage-alert__icon" aria-hidden="true">⚠️</span>
+    <span class="coverage-alert__text">
+      ${
+        critical
+          ? `Cobertura crítica (${coveragePercent.toFixed(1)}%). Amplie a geração urgentemente.`
+          : `Cobertura abaixo da meta de ${threshold}% (${coveragePercent.toFixed(1)}%).`
+      }
+    </span>`;
+  alertEl.classList.toggle('coverage-alert--critical', critical);
+  alertEl.classList.toggle('coverage-alert--pulse', true);
+}
+
 export function renderMap() {
   const energyMetrics = calcEnergy(gameState.buildings, gameState.region, gameState.eventModifiers);
   const coveragePercent = energyMetrics.coverage;
@@ -22,6 +52,8 @@ export function renderMap() {
   progressBar.style.width = `${Math.min(coveragePercent, 100)}%`;
   progressBar.className = `prog-bar ${coverageClass(coveragePercent)}`;
   document.getElementById('map-prog-label').textContent = `${coveragePercent.toFixed(1)}%`;
+
+  updateCoverageAlert(coveragePercent);
 
   document.getElementById('map-producers').textContent = gameState.buildings.filter(
     building => building.role === 'producer',
